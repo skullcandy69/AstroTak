@@ -4,7 +4,7 @@ const getQuestions = baseUrl + "/question/category/all";
 
 const getRelative = baseUrl + "/relative/all";
 
-const getLocations = baseUrl + "location/place?inputPlace=";
+const getLocations = baseUrl + "/location/place?inputPlace=";
 
 const addRelative = baseUrl + "/relative";
 

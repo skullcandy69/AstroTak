@@ -1,7 +1,7 @@
 import 'package:astrotak/Constants/colors.dart';
 import 'package:astrotak/Constants/navigation_helper.dart';
 import 'package:astrotak/Views/ask_question.dart';
-import 'package:astrotak/Views/my_profile.dart';
+import 'package:astrotak/Views/profile.dart';
 import 'package:flutter/material.dart';
 
 class HomePage extends StatefulWidget {
@@ -12,7 +12,7 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  int _selectedIndex = 0;
+  int _selectedIndex = 2;
 
   static const List<Widget> _widgetOptions = <Widget>[
     Text('Home Page',

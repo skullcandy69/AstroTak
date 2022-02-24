@@ -1,6 +1,6 @@
 class AskQuestionModel {
   String? httpStatus;
-  int? httpStatusCode;
+  dynamic httpStatusCode;
   bool? success;
   String? message;
   String? apiName;
@@ -44,12 +44,12 @@ class AskQuestionModel {
 
 class AskModelData {
   int? id;
-  String? name;
+  late String name;
   String? description;
-  int? price;
+  dynamic price;
   List<String>? suggestions;
 
-  AskModelData({this.id, this.name, this.description, this.price, this.suggestions});
+  AskModelData(this.name,{this.id,  this.description, this.price, this.suggestions});
 
   AskModelData.fromJson(Map<String, dynamic> json) {
     id = json['id'];

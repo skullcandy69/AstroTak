@@ -1,13 +1,33 @@
 import 'package:astrotak/Constants/colors.dart';
+import 'package:astrotak/Provider/questionProvider.dart';
+import 'package:astrotak/Provider/relativeProvider.dart';
 import 'package:astrotak/Views/home_page.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:provider/single_child_widget.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp( MultiProvider(
+      providers: providers,child:const MyApp()));
+}
+List<SingleChildWidget> providers = [
+  ChangeNotifierProvider<QuestionDataProvider>(create: (_) => QuestionDataProvider()),
+    ChangeNotifierProvider<RelativesDataProvider>(create: (_) => RelativesDataProvider()),
+
+];
+class MyApp extends StatefulWidget {
+  const MyApp({Key? key}) : super(key: key);
+
+  @override
+  State<MyApp> createState() => _MyAppState();
 }
 
-class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key: key);
+class _MyAppState extends State<MyApp> {
+  @override
+  void initState() {
+    super.initState();
+    
+  }
 
   // This widget is the root of your application.
   @override

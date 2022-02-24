@@ -86,7 +86,7 @@ class AllRelatives {
   String? relation;
   int? relationId;
   String? firstName;
-  Null? middleName;
+  dynamic middleName;
   String? lastName;
   String? fullName;
   String? gender;
