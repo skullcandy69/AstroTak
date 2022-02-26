@@ -1,6 +1,6 @@
 import 'package:astrotak/Constants/colors.dart';
-import 'package:astrotak/Provider/questionProvider.dart';
-import 'package:astrotak/Provider/relativeProvider.dart';
+import 'package:astrotak/Provider/question_provider.dart';
+import 'package:astrotak/Provider/relative_provider.dart';
 import 'package:astrotak/Views/home_page.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';

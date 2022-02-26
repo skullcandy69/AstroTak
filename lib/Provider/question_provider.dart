@@ -1,5 +1,5 @@
-import 'package:astrotak/Models/askQuestionsModel.dart';
-import 'package:astrotak/Services/ApiService.dart';
+import 'package:astrotak/Models/ask_questions_model.dart';
+import 'package:astrotak/Services/api_services.dart';
 import 'package:flutter/foundation.dart';
 
 class QuestionDataProvider with ChangeNotifier {

@@ -1,9 +1,10 @@
 import 'dart:convert';
 import 'dart:developer';
 import 'package:astrotak/Constants/apis.dart';
-import 'package:astrotak/Models/askQuestionsModel.dart';
-import 'package:astrotak/Models/locationAPIModel.dart';
-import 'package:astrotak/Models/relativesModel.dart';
+import 'package:astrotak/Models/ask_questions_model.dart';
+import 'package:astrotak/Models/location_api_model.dart';
+import 'package:astrotak/Models/relatives_model.dart';
+import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
 class ApiService {
@@ -33,9 +34,10 @@ class ApiService {
     RelativesModel result = RelativesModel();
     try {
       final response = await http.get(
-        Uri.parse(getRelative),
+        Uri.parse(getRelative + "?pageSize=100"),
         headers: {"Authorization": token},
       );
+      log(response.body);
       if (response.statusCode == 200) {
         final item = json.decode(response.body);
         result = RelativesModel.fromJson(item);
@@ -49,11 +51,55 @@ class ApiService {
     return result;
   }
 
-  Future<LocationAPIModel> getLocation(String query) async {
-    LocationAPIModel result = LocationAPIModel();
-    if(query.isEmpty){
-      query='a';
+  addRelatives(Map<String, dynamic> data) async {
+    try {
+      final response = await http.post(Uri.parse(addRelative),
+          headers: {"Authorization": token, "Content-Type": "application/json"},
+          body: jsonEncode(data));
+      log(response.body);
+      final item = json.decode(response.body);
+      if (response.statusCode == 200) {
+        return {"status": true, "message": item['message']};
+      } else {
+        log(response.body);
+        return {"status": false, "message": item['message']};
+      }
+    } catch (e) {
+      log(e.toString());
+      return {
+        "status": false,
+        "message": "Some error try again after some time"
+      };
     }
+  }
+
+  updateRelatives(AllRelatives r) async {
+    try {
+      final response = await http.post(Uri.parse(updateRelative + r.uuid!),
+          headers: {"Authorization": token, "Content-Type": "application/json"},
+          body: jsonEncode(r));
+      log(response.body);
+      final item = json.decode(response.body);
+      if (response.statusCode == 200) {
+        return {"status": true, "message": item['message']};
+      } else {
+        log(response.body);
+        return {"status": false, "message": item['message']};
+      }
+    } catch (e) {
+      log(e.toString());
+      return {
+        "status": false,
+        "message": "Some error try again after some time"
+      };
+    }
+  }
+
+  Future<LocationAPIModel> getLocation(String query) async {
+    LocationAPIModel result = LocationAPIModel(data: []);
+    // if(query.isEmpty){
+    //   query='a';
+    // }
     try {
       final response = await http.get(
         Uri.parse(getLocations + query),
@@ -80,11 +126,7 @@ class ApiService {
         headers: {"Authorization": token},
       );
       log(response.body);
-      if (response.statusCode == 200) {
-        final item = json.decode(response.body);
-      } else {
-        log(response.body);
-      }
+
       return json.decode(response.body);
     } catch (e) {
       log(e.toString());

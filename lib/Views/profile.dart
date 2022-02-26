@@ -1,6 +1,5 @@
 import 'package:astrotak/Constants/colors.dart';
 import 'package:astrotak/Views/my_profile.dart';
-import 'package:astrotak/Views/friends_and_family.dart';
 import 'package:flutter/material.dart';
 
 class Profile extends StatefulWidget {

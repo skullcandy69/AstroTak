@@ -10,6 +10,9 @@ class MyProfile extends StatefulWidget {
 }
 
 class _MyProfileState extends State<MyProfile> {
+  ScrollController controller = ScrollController();
+  ScrollPhysics scrollPhysics = const ScrollPhysics();
+  final GlobalKey _key =GlobalKey();
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
@@ -18,8 +21,11 @@ class _MyProfileState extends State<MyProfile> {
       child: SizedBox(
         height: MediaQuery.of(context).size.height - kToolbarHeight,
         child: SingleChildScrollView(
-          child: Column(mainAxisSize: MainAxisSize.max, children: [
+          // controller: controller,
+          physics: const NeverScrollableScrollPhysics(),
+          child: Column(mainAxisSize: MainAxisSize.min, children: [
             TabBar(
+              key: _key,
               unselectedLabelStyle: const TextStyle(color: white),
               indicator: BoxDecoration(
                   color: Colors.orange, borderRadius: BorderRadius.circular(5)),
@@ -39,9 +45,9 @@ class _MyProfileState extends State<MyProfile> {
                 
                 children: [
                 Container(),
-                const Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 20.0),
-                  child: FriendsAndFamily(),
+                 Padding(
+                  padding:const EdgeInsets.symmetric(horizontal: 20.0),
+                  child:  FriendsAndFamily(scontroller:controller ,sphysics:scrollPhysics),
                 )
               ]),
             )

@@ -7,12 +7,12 @@ class AskQuestionModel {
   List<AskModelData>? data;
 
   AskQuestionModel(
-      {this.httpStatus,
-      this.httpStatusCode,
-      this.success,
-      this.message,
-      this.apiName,
-      this.data});
+      {httpStatus,
+      httpStatusCode,
+      success,
+      message,
+      apiName,
+      data});
 
   AskQuestionModel.fromJson(Map<String, dynamic> json) {
     httpStatus = json['httpStatus'];
@@ -23,19 +23,19 @@ class AskQuestionModel {
     if (json['data'] != null) {
       data = <AskModelData>[];
       json['data'].forEach((v) {
-        data!.add(new AskModelData.fromJson(v));
+        data!.add( AskModelData.fromJson(v));
       });
     }
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['httpStatus'] = this.httpStatus;
-    data['httpStatusCode'] = this.httpStatusCode;
-    data['success'] = this.success;
-    data['message'] = this.message;
-    data['apiName'] = this.apiName;
-    if (this.data != null) {
+    final Map<String, dynamic> data =  <String, dynamic>{};
+    data['httpStatus'] = httpStatus;
+    data['httpStatusCode'] = httpStatusCode;
+    data['success'] = success;
+    data['message'] = message;
+    data['apiName'] = apiName;
+    if (data != (null)) {
       data['data'] = this.data!.map((v) => v.toJson()).toList();
     }
     return data;
@@ -44,12 +44,12 @@ class AskQuestionModel {
 
 class AskModelData {
   int? id;
-  late String name;
+  String? name;
   String? description;
   dynamic price;
   List<String>? suggestions;
 
-  AskModelData(this.name,{this.id,  this.description, this.price, this.suggestions});
+  AskModelData(name,{id,  description, price, suggestions});
 
   AskModelData.fromJson(Map<String, dynamic> json) {
     id = json['id'];
@@ -60,12 +60,12 @@ class AskModelData {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['id'] = this.id;
-    data['name'] = this.name;
-    data['description'] = this.description;
-    data['price'] = this.price;
-    data['suggestions'] = this.suggestions;
+    final Map<String, dynamic> data =  <String, dynamic>{};
+    data['id'] = id;
+    data['name'] = name;
+    data['description'] = description;
+    data['price'] = price;
+    data['suggestions'] = suggestions;
     return data;
   }
 }

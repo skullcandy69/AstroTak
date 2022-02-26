@@ -4,7 +4,7 @@ class LocationAPIModel {
   bool? success;
   String? message;
   String? apiName;
-  List<LocationModelData>? data;
+  late List<LocationModelData> data = [];
 
   LocationAPIModel(
       {this.httpStatus,
@@ -12,7 +12,7 @@ class LocationAPIModel {
       this.success,
       this.message,
       this.apiName,
-      this.data});
+      required this.data });
 
   LocationAPIModel.fromJson(Map<String, dynamic> json) {
     httpStatus = json['httpStatus'];
@@ -23,7 +23,7 @@ class LocationAPIModel {
     if (json['data'] != null) {
       data = <LocationModelData>[];
       json['data'].forEach((v) {
-        data!.add(LocationModelData.fromJson(v));
+        data.add(LocationModelData.fromJson(v));
       });
     }
   }
@@ -35,8 +35,8 @@ class LocationAPIModel {
     data['success'] = success;
     data['message'] = message;
     data['apiName'] = apiName;
-    if (this.data != null) {
-      data['data'] = this.data!.map((v) => v.toJson()).toList();
+    if (this.data != (null)) {
+      data['data'] = this.data.map((v) => v.toJson()).toList();
     }
     return data;
   }

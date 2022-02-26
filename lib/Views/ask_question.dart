@@ -1,6 +1,6 @@
 import 'package:astrotak/Constants/colors.dart';
-import 'package:astrotak/Models/askQuestionsModel.dart';
-import 'package:astrotak/Provider/questionProvider.dart';
+import 'package:astrotak/Models/ask_questions_model.dart';
+import 'package:astrotak/Provider/question_provider.dart';
 import 'package:astrotak/Widgets/wallet_lable.dart';
 import 'package:flutter/material.dart';
 import 'dart:math' as math;
@@ -62,8 +62,8 @@ class _AskQuestionState extends State<AskQuestion> {
                 child: CircularProgressIndicator(),
               )
             : RefreshIndicator(
-              onRefresh: ()=>questions.getQuestionData(),
-              child: SizedBox(
+                onRefresh: () => questions.getQuestionData(),
+                child: SizedBox(
                   height: MediaQuery.of(context).size.height -
                       kToolbarHeight -
                       kBottomNavigationBarHeight,
@@ -105,18 +105,18 @@ class _AskQuestionState extends State<AskQuestion> {
                         ),
                         Padding(
                           padding: const EdgeInsets.all(10.0),
-                          child: questions.questions.data!.length == 0
+                          child: questions.questions.data!.isEmpty
                               ? const CircularProgressIndicator()
                               : DropdownButton(
                                   isExpanded: true,
                                   borderRadius: BorderRadius.circular(10),
                                   value: questions.isSelected,
                                   items: questions.questions.data!
-                                      .map(
-                                          (AskModelData data) => DropdownMenuItem(
-                                                child: Text(data.name),
-                                                value: data,
-                                              ))
+                                      .map((AskModelData data) =>
+                                          DropdownMenuItem(
+                                            child: Text(data.name!),
+                                            value: data,
+                                          ))
                                       .toList(),
                                   onChanged: questions.selectQuestion),
                         ),
@@ -147,7 +147,8 @@ class _AskQuestionState extends State<AskQuestion> {
                             itemCount: questions.isSelected.suggestions!.length,
                             physics: const ScrollPhysics(),
                             shrinkWrap: true,
-                            separatorBuilder: (BuildContext context, int index) {
+                            separatorBuilder:
+                                (BuildContext context, int index) {
                               return const Divider();
                             },
                             itemBuilder: (BuildContext context, int index) {
@@ -172,8 +173,8 @@ class _AskQuestionState extends State<AskQuestion> {
                                       ),
                                     ),
                                   ),
-                                  title: Text(
-                                      questions.isSelected.suggestions![index]));
+                                  title: Text(questions
+                                      .isSelected.suggestions![index]));
                             },
                           ),
                         ),
@@ -204,7 +205,7 @@ class _AskQuestionState extends State<AskQuestion> {
                     ),
                   ),
                 ),
-            ),
+              ),
       );
     });
   }

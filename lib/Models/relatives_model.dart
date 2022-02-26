@@ -30,7 +30,7 @@ class RelativesModel {
     data['success'] = success;
     data['message'] = message;
     data['apiName'] = apiName;
-    if (data != null) {
+    if (data != (null)) {
       data['data'] = this.data!.toJson();
     }
     return data;
@@ -62,13 +62,13 @@ class RelativeModelData {
     if (json['allRelatives'] != null) {
       allRelatives = <AllRelatives>[];
       json['allRelatives'].forEach((v) {
-        allRelatives!.add(new AllRelatives.fromJson(v));
+        allRelatives!.add( AllRelatives.fromJson(v));
       });
     }
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
+    final Map<String, dynamic> data =  <String, dynamic>{};
     data['pageNo'] = pageNo;
     data['numberOfElements'] = numberOfElements;
     data['pageSize'] = pageSize;
@@ -118,15 +118,15 @@ class AllRelatives {
     gender = json['gender'];
     dateAndTimeOfBirth = json['dateAndTimeOfBirth'];
     birthDetails = json['birthDetails'] != null
-        ? new BirthDetails.fromJson(json['birthDetails'])
+        ? BirthDetails.fromJson(json['birthDetails'])
         : null;
     birthPlace = json['birthPlace'] != null
-        ? new BirthPlace.fromJson(json['birthPlace'])
+        ?  BirthPlace.fromJson(json['birthPlace'])
         : null;
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
+    final Map<String, dynamic> data =  <String, dynamic>{};
     data['uuid'] = uuid;
     data['relation'] = relation;
     data['relationId'] = relationId;
@@ -195,7 +195,7 @@ class BirthPlace {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
+    final Map<String, dynamic> data =  <String, dynamic>{};
     data['placeName'] = placeName;
     data['placeId'] = placeId;
     return data;
