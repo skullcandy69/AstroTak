@@ -199,7 +199,6 @@ class _FriendsAndFamilyState extends State<FriendsAndFamily> {
                 
                 showBottomBorder: true,
                 dividerThickness: 5,
-                // border: TableBorder.symmetric(inside:BorderSide.none ,outside: BorderSide(). ),
                 rows: List<DataRow>.generate(
                   relatives.relatives.data!.allRelatives!.length,
                   (int index) => DataRow(
@@ -562,7 +561,7 @@ class _FriendsAndFamilyState extends State<FriendsAndFamily> {
             itemBuilder: (context, LocationModelData suggestion) {
               return ListTile(
                 title: Text(suggestion.placeName!),
-                subtitle: Text(suggestion.placeId!),
+                // subtitle: Text(suggestion.placeId!),
               );
             },
             errorBuilder: (context, error) => Text("Error : $error"),
